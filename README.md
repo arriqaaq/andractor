@@ -10,7 +10,6 @@ Installation guidelines:
 
     Example: pip install androguard
 
-    Next create a "media" folder alongside the static folder where the apk's will get uploaded.
 
 2)  Once you've cloned the app, open the settings.py file in djandroid folder.
     Edit the database settings as per your requirements. 

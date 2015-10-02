@@ -1,0 +1,38 @@
+from django.shortcuts import render, render_to_response
+from django.template import RequestContext
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+from analyze import get_permissions, get_name
+from django.conf import settings
+
+from .models import Document
+from .forms import DocumentForm
+# Create your views here.
+
+def list(request):
+    # Handle file upload
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            newdoc = Document(docfile = request.FILES['docfile'])
+	    newdoc.save()    
+	    p=request.FILES['docfile'].name
+	    k=settings.MEDIA_ROOT+'/documents/'+str(p)
+    	    for i in get_permissions(k):
+			print i		
+            
+
+            # Redirect to the document list after POST
+            return HttpResponseRedirect(reverse('droid.views.list'))
+    else:
+        form = DocumentForm() # A empty, unbound form
+	k=''
+    # Load documents for the list page
+    documents = Document.objects.all()
+
+    # Render list page with the documents and the form
+    return render_to_response(
+        'droid/list.html',
+        {'documents': documents, 'form': form,'k':k},
+        context_instance=RequestContext(request)
+    )

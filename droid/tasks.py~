@@ -1,0 +1,7 @@
+from .models import APK,Permission
+from django.conf import settings
+
+
+def convert(id,filename):
+	apk=APK.objects.get(pk=id)	
+	apk.load_permissions(k)

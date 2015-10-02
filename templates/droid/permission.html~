@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Minimal Django File Upload Example</title>   
+    </head>
+    <body>
+    <!-- List of uploaded documents -->
+    {% if apk %}
+    <li>Permissions for {{apk.name}} are:</li>	
+    {% endif %}    
+{% if permissions %}
+        <ul>
+        {% for p in permissions %}
+            <li>{{ p }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No permissions.</p>
+    {% endif %}
+    
+    </body>
+</html> 

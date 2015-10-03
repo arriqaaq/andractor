@@ -40,9 +40,10 @@ Installation guidelines:
 4)  I have provided a supervisor file called droid.conf to automate the task of running the workers on the system start.
     Just copy the file into the /etc/supervisor/conf.d/ folder to run it.
     
-5)  Lastly, just run the following command in a new terminal
-    
-    python manage.py runserver
+5)  Lastly, just run the following commands in a new terminal
+
+    python manage.py syncdb (This creates your db and sets up the superuser)
+    python manage.py runserver 
     
     
 Just upload the .apk file of any app and view the app's permissions easily!
